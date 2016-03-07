@@ -6,7 +6,7 @@ use Sodium\Concrete\Component\Model\ModelConcrete;
 use Sodium\Contract\Component\Model\Colorspace\ColorspaceInterface;
 use Sodium\Contract\Component\Model\ConversionAwareInterface;
 
-class Cmyk  extends ModelConcrete implements ColorspaceInterface,ConversionAwareInterface
+class Cmyk extends ModelConcrete implements ColorspaceInterface,ConversionAwareInterface
 {
     protected $cyan = 0;
     protected $magenta = 0;
