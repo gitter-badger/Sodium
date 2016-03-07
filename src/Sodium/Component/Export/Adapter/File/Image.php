@@ -12,7 +12,7 @@ class Image extends ExportFileAdapterConcrete implements ExportAdapterFileInterf
 {
     public function export(array $colors)
     {
-    	$colors=$this->makeInputFlat($colors);
+        $colors=$this->makeInputFlat($colors);
         $imagine = new Imagine();
         $palette = new RGB();
         $size  = new Box(200, 200);

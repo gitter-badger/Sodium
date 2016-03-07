@@ -16,21 +16,21 @@ class Cmy extends CmyModel
 
     public function getCyan($format)
     {
-        return $this->CmyModel->formatOutput($this->CmyModel->cyan,$format);
+        return $this->CmyModel->formatOutput($this->CmyModel->cyan, $format);
     }
 
     public function getMagenta($format)
     {
-        return $this->CmyModel->formatOutput($this->CmyModel->magenta,$format);
+        return $this->CmyModel->formatOutput($this->CmyModel->magenta, $format);
     }
     public function getYellow($format)
     {
-        return $this->CmyModel->formatOutput($this->CmyModel->yellow,$format);
+        return $this->CmyModel->formatOutput($this->CmyModel->yellow, $format);
     }
 
     public function getCMY($format)
     {
-        return $this->CmyModel->formatOutput($this->CmyModel->cmy,$format);
+        return $this->CmyModel->formatOutput($this->CmyModel->cmy, $format);
     }
 
 

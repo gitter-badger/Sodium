@@ -7,12 +7,12 @@ class InputFormatter
     protected $rawInput;
     protected $formats=array();
 
-    public static function init($rawInput,$formats=array())
+    public static function init($rawInput, $formats=array())
     {
-        return new self($rawInput,$formats);
+        return new self($rawInput, $formats);
     }
 
-    function __construct($rawInput,array $formats)
+    public function __construct($rawInput, array $formats)
     {
         $this->rawInput = $rawInput;
         $this->formats = $formats;
@@ -43,8 +43,8 @@ class InputFormatter
 
     public function format()
     {
-        foreach($this->formats as $type){
-            if($type::isAcceptedFormat($this->rawInput)){
+        foreach ($this->formats as $type) {
+            if ($type::isAcceptedFormat($this->rawInput)) {
                 $format=new $type();
                 $format->setFormats($this->getFormats());
                 return $format->getFormattedInput($this->rawInput);

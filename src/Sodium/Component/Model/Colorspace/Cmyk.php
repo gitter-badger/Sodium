@@ -6,7 +6,7 @@ use Sodium\Concrete\Component\Model\ModelConcrete;
 use Sodium\Contract\Component\Model\Colorspace\ColorspaceInterface;
 use Sodium\Contract\Component\Model\ConversionAwareInterface;
 
-class Cmyk  extends ModelConcrete implements ColorspaceInterface,ConversionAwareInterface
+class Cmyk extends ModelConcrete implements ColorspaceInterface,ConversionAwareInterface
 {
     protected $cyan = 0;
     protected $magenta = 0;
@@ -34,7 +34,7 @@ class Cmyk  extends ModelConcrete implements ColorspaceInterface,ConversionAware
         }
     }
 
-    static function regex()
+    public static function regex()
     {
         $regex['cmyk'] = '/^cmyk\(([-+]?[0-9]*\.?[0-9]*)%?,([-+]?[0-9]*\.?.*)%?,([-+]?[0-9]*.*)%?,([-+]?[0-9]*.*)%?\)$/i';
         $regex['key'] = '/^key\(([-+]?[0-9]*.*)%?\)$/i';
@@ -56,7 +56,7 @@ class Cmyk  extends ModelConcrete implements ColorspaceInterface,ConversionAware
         );
     }
 
-    function toRGB()
+    public function toRGB()
     {
         $cyan = $this->cyan / 100;
         $magenta = $this->magenta / 100;
@@ -79,7 +79,7 @@ class Cmyk  extends ModelConcrete implements ColorspaceInterface,ConversionAware
         );
     }
 
-    function fromRGB(array $rgb)
+    public function fromRGB(array $rgb)
     {
         $cyan = 1 - ($rgb[0] / 255);
         $magenta = 1 - ($rgb[1] / 255);
@@ -119,7 +119,6 @@ class Cmyk  extends ModelConcrete implements ColorspaceInterface,ConversionAware
 
     protected function format($string)
     {
-
         $type = self::isValid($string, true);
         switch ($type) {
             case 'cmyk':
@@ -146,7 +145,6 @@ class Cmyk  extends ModelConcrete implements ColorspaceInterface,ConversionAware
 
     protected function filterInput($value)
     {
-
         if (is_array($value)) {
             $cmyk = array();
             $last = end($value);
@@ -163,7 +161,6 @@ class Cmyk  extends ModelConcrete implements ColorspaceInterface,ConversionAware
 
     protected function validateInput($value, $key = false)
     {
-
         $max = self::MAX;
         if ($key) {
             $max = self::KEY_MAX;

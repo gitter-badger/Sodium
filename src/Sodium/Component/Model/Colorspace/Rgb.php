@@ -76,7 +76,6 @@ class Rgb extends ModelConcrete implements ColorspaceInterface, ConversionAwareI
 
     protected function formatInput($string)
     {
-
         $type = self::isAcceptedFormat($string, true);
         switch ($type) {
             case 'rgb':
@@ -135,7 +134,6 @@ class Rgb extends ModelConcrete implements ColorspaceInterface, ConversionAwareI
 
     protected function validateInput($value)
     {
-
         if (strpos($value, '%') !== false) {
             $value = rtrim($value, '%');
             $value = (float) $value;
@@ -165,10 +163,10 @@ class Rgb extends ModelConcrete implements ColorspaceInterface, ConversionAwareI
         if (is_array($value) && $format == 'object') {
             return $this;
         }
-        if (is_array($value)) {  
+        if (is_array($value)) {
             $new_values = array();
             foreach ($value as $val) {
-                $new_values[] = $this->formatOutput($val, $format,true);
+                $new_values[] = $this->formatOutput($val, $format, true);
             }
             return $new_values;
         }

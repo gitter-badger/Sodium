@@ -48,8 +48,9 @@ class Kuler_Theme
     {
         $namespaces = $rssItem->getDocNamespaces();
         $this->_theme = $rssItem->children($namespaces['kuler'])->themeItem;
-        if (!isset($this->_theme->themeID))
+        if (!isset($this->_theme->themeID)) {
             throw new Kuler_Exception('Error loading the Kuler item');
+        }
     }
 
     /**
@@ -62,10 +63,11 @@ class Kuler_Theme
     public function __get($name)
     {
         $property = 'theme' . ucfirst($name);
-        if (property_exists($this->_theme, $property))
+        if (property_exists($this->_theme, $property)) {
             return $this->_theme->$property;
-        else
+        } else {
             throw new Kuler_Exception('Property \'' . $name . '\' not found');
+        }
     }
 
     /**
@@ -126,5 +128,4 @@ class Kuler_Theme
     {
         return Kuler_Api::viewThemeUrl((int)$this->ID);
     }
-
 }

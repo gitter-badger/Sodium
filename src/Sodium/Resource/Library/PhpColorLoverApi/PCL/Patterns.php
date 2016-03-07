@@ -323,5 +323,3 @@ class PCL_Patterns
         return (int)$obj_val;
     }
 }
-
-?>

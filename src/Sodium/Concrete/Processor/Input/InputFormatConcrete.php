@@ -15,5 +15,4 @@ abstract class InputFormatConcrete
     {
         return $this->formats;
     }
-
 }

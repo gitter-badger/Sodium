@@ -16,22 +16,22 @@ class Rgb extends RgbModel
 
     public function getBlue($format)
     {
-        return $this->rgbModel->formatOutput($this->rgbModel->blue,$format);
+        return $this->rgbModel->formatOutput($this->rgbModel->blue, $format);
     }
 
     public function getGreen($format)
     {
-        return $this->rgbModel->formatOutput($this->rgbModel->green,$format);
+        return $this->rgbModel->formatOutput($this->rgbModel->green, $format);
     }
 
     public function getRGB($format)
     {
-        return $this->rgbModel->formatOutput($this->rgbModel->rgb,$format);
+        return $this->rgbModel->formatOutput($this->rgbModel->rgb, $format);
     }
 
     public function getRed($format)
     {
-        return $this->rgbModel->formatOutput($this->rgbModel->red,$format);
+        return $this->rgbModel->formatOutput($this->rgbModel->red, $format);
     }
 
     public function setRed($red)

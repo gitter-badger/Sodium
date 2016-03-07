@@ -40,5 +40,4 @@ abstract class GarageConcrete
     {
         return $this->engine;
     }
-
 }

@@ -44,7 +44,7 @@ class HunterLab extends ModelConcrete implements ColorspaceInterface,ConversionA
         return $value;
     }
 
-    static function regex()
+    public static function regex()
     {
         $regex['hlab'] = '/^hlab\(([-+]?[0-9]*\.?[0-9]*),([-+]?[0-9]*\.?.*),([-+]?[0-9]*.*)\)$/i';
         return $regex;
@@ -64,7 +64,7 @@ class HunterLab extends ModelConcrete implements ColorspaceInterface,ConversionA
         );
     }
 
-    function toRGB()
+    public function toRGB()
     {
         $y = $this->l / 10;
         $x = $this->a / 17.5 * $this->l / 10;
@@ -79,7 +79,7 @@ class HunterLab extends ModelConcrete implements ColorspaceInterface,ConversionA
         return $xyz->toRGB();
     }
 
-    function fromRGB(array $rgb)
+    public function fromRGB(array $rgb)
     {
 
         // TODO refactor xyz class

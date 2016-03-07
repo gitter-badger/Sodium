@@ -28,13 +28,12 @@ class Yxy extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     protected function format($str_yxy)
     {
-
         $string = ltrim($str_yxy, 'yxy(');
         $string = rtrim($string, ')');
         return explode(',', $string);
     }
 
-    static function regex()
+    public static function regex()
     {
         $regex[] = '/^yxy\(([-+]?[0-9]*\.?[0-9]*)%?,([-+]?[0-9]*\.?.*)%?,([-+]?[0-9]*.*)%?\)$/i';
         return $regex;
@@ -54,7 +53,7 @@ class Yxy extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         );
     }
 
-    function toRGB()
+    public function toRGB()
     {
         $X = $this->x * ($this->Y / $this->y);
         $Y = $this->Y;
@@ -89,7 +88,7 @@ class Yxy extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         return array($var_R, $var_G, $var_B);
     }
 
-    function fromRGB(array $rgb)
+    public function fromRGB(array $rgb)
     {
         $tmp_r = $rgb[0] / 255;
         $tmp_g = $rgb[1] / 255;

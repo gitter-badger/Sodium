@@ -13,13 +13,13 @@ class InputResolver
     protected $predefinedColors=array('rgb(0,0,0)');
     private $registeredModels;
 
-    public static function init($input,$registeredModels)
+    public static function init($input, $registeredModels)
     {
-        $self=new self($input,$registeredModels);
+        $self=new self($input, $registeredModels);
         return $self->resolve();
     }
 
-    public function __construct($input,$registeredModels)
+    public function __construct($input, $registeredModels)
     {
         $this->input = $input;
         $this->registeredModels = $registeredModels;
@@ -57,8 +57,9 @@ class InputResolver
 
     protected function resolveBlankInput($flush=false)
     {
-        if($flush)
+        if ($flush) {
             return $this->fetchColorModel('');
+        }
         $colors = count($this->predefinedColors) == 0 ? 'rgb(0,0,0)' : $this->predefinedColors;
         $this->resolveInput($colors);
     }
@@ -82,7 +83,7 @@ class InputResolver
         foreach ($this->registeredModels as $name => $model):
             if ($model::isAcceptedFormat($input)) {
                 if (!isset($this->models[$input][$model])) {
-                    $this->models[$input] = ModelInitiator::initiate($model,$input);
+                    $this->models[$input] = ModelInitiator::initiate($model, $input);
                     $this->inputs[]=$input;
                 }
                 $valid = true;
@@ -107,6 +108,4 @@ class InputResolver
         $models=$this->getModels();
         return $models[$input];
     }
-
-
 }

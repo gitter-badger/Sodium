@@ -81,8 +81,8 @@ class PCL_Color
         if (function_exists("curl_init")) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_HEADER, FALSE);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $xml = curl_exec($ch);
             curl_close($ch);
         } else {
@@ -106,7 +106,7 @@ class PCL_Color
         $xml = preg_replace("/\<\!\[CDATA\[(.*?)\]\]\>/ies", "'[CDATA]'.base64_encode('$1').'[/CDATA]'", $xml);
         $xml = new SimpleXMLElement($xml);
         if (isset($xml->noresults)) {
-            return FALSE;
+            return false;
         }
         $out = array();
         foreach ($xml->color as $color) {

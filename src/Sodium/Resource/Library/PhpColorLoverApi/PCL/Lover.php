@@ -206,5 +206,3 @@ class PCL_Lover
         return (int)$obj_val;
     }
 }
-
-?>

@@ -28,7 +28,7 @@ class IcoThumb
      * @type resource
      * @var  public
      **/
-    var $ico;
+    public $ico;
 
     /**
      * IcoThumb::padding
@@ -37,7 +37,7 @@ class IcoThumb
      * @type array
      * @var  public
      **/
-    var $padding = array(
+    public $padding = array(
         'left' => 10,
         'top' => 5,
         'right' => 10,
@@ -52,7 +52,7 @@ class IcoThumb
      * @type boolean
      * @var  public
      **/
-    var $view_info = true;
+    public $view_info = true;
 
     /**
      * IcoThumb::use_diferent_depths
@@ -61,7 +61,7 @@ class IcoThumb
      * @type boolean
      * @var  public
      **/
-    var $use_diferent_depths = false;
+    public $use_diferent_depths = false;
 
     /**
      * IcoThumb::font
@@ -70,7 +70,7 @@ class IcoThumb
      * @type array
      * @var  public
      **/
-    var $font = array(
+    public $font = array(
         'size' => 2,
         'depth' => 1
     );
@@ -83,7 +83,7 @@ class IcoThumb
      * @type array
      * @var  public
      **/
-    var $color = array(
+    public $color = array(
         'size' => array(100, 100, 100),
         'depth' => array(100, 100, 100),
         'line' => array(180, 180, 180)
@@ -96,7 +96,7 @@ class IcoThumb
      * @type integer
      * @var  public
      **/
-    var $max_size = 128;
+    public $max_size = 128;
 
     /**
      * IcoThumb::IcoThumb()
@@ -105,7 +105,7 @@ class IcoThumb
      * @param   optional    string   $path   Path to ICO file
      * @return              void
      **/
-    function IcoThumb($path = '')
+    public function IcoThumb($path = '')
     {
         if (!class_exists('Ico')) {
             include dirname(__FILE__) . '/class.ico.php';
@@ -124,7 +124,7 @@ class IcoThumb
      * @param   string $path Path to ICO file
      * @return  void
      **/
-    function LoadIco($path)
+    public function LoadIco($path)
     {
         $this->ico = new Ico($path);
         $this->ico->bgcolor = array(255, 255, 255);
@@ -137,7 +137,7 @@ class IcoThumb
      * @param   integer $total_icons Total icons in thumbnail
      * @return  resource    Image resource (Thumbnail)
      **/
-    function GetThumb($total_icons = 0)
+    public function GetThumb($total_icons = 0)
     {
         if ($total_icons <= 0 || $total_icons > count($this->ico->formats)) {
             $total_icons = count($this->ico->formats);
@@ -178,9 +178,13 @@ class IcoThumb
         $p = 0;
         while ($total_icons > 0) {
             if (!$this->use_diferent_depths) {
-                while (isset($icons[$p + 1]) && $icons[$p]['size'] == $last_size) $p++;
+                while (isset($icons[$p + 1]) && $icons[$p]['size'] == $last_size) {
+                    $p++;
+                }
             }
-            if (!isset($icons[$p])) break;
+            if (!isset($icons[$p])) {
+                break;
+            }
             $chosen_icons[] = $icons[$p]['index'];
             $last_size = $icons[$p++]['size'];
             $total_icons--;
@@ -249,7 +253,7 @@ class IcoThumb
      * @param   string $text String
      * @return  void
      **/
-    function ImageStringCentered(&$im, $left, $top, $width, $font, $color, $text)
+    public function ImageStringCentered(&$im, $left, $top, $width, $font, $color, $text)
     {
         $text_width = imagefontwidth($font) * strlen($text);
         $left += (($width - $text_width) / 2);
@@ -257,5 +261,3 @@ class IcoThumb
         imagestring($im, $font, $left, $top, $text, $color);
     }
 }
-
-?>

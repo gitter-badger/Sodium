@@ -72,32 +72,32 @@ class Converter extends GarageConcrete
     public function setCyan($cyan)
     {
         $this->_get_model('Colorspace\Cmy')->setCyan($cyan);
-         return $this->_update_models('Colorspace\Cmy');
+        return $this->_update_models('Colorspace\Cmy');
     }
     public function setMagenta($magenta)
     {
         $this->_get_model('Colorspace\Cmy')->setMagenta($magenta);
-         return $this->_update_models('Colorspace\Cmy');
+        return $this->_update_models('Colorspace\Cmy');
     }
     public function setYellow($yellow)
     {
         $this->_get_model('Colorspace\Cmy')->setYellow($yellow);
-         return $this->_update_models('Colorspace\Cmy');
+        return $this->_update_models('Colorspace\Cmy');
     }
     public function mixCyan($cyan)
     {
         $this->_get_model('Colorspace\Cmy')->mixCyan($cyan);
-         return $this->_update_models('Colorspace\Cmy');
+        return $this->_update_models('Colorspace\Cmy');
     }
     public function mixMagenta($magenta)
     {
         $this->_get_model('Colorspace\Cmy')->mixMagenta($magenta);
-         return $this->_update_models('Colorspace\Cmy');
+        return $this->_update_models('Colorspace\Cmy');
     }
     public function mixYellow($yellow)
     {
         $this->_get_model('Colorspace\Cmy')->mixYellow($yellow);
-         return $this->_update_models('Colorspace\Cmy');
+        return $this->_update_models('Colorspace\Cmy');
     }
     public function getCMY($format)
     {
@@ -119,32 +119,32 @@ class Converter extends GarageConcrete
     public function setHue($cyan)
     {
         $this->_get_model('Colorspace\Hsl')->setHue($cyan);
-         return $this->_update_models('Colorspace\Hsl');
+        return $this->_update_models('Colorspace\Hsl');
     }
     public function setSaturation($magenta)
     {
         $this->_get_model('Colorspace\Hsl')->setSaturation($magenta);
-         return $this->_update_models('Colorspace\Hsl');
+        return $this->_update_models('Colorspace\Hsl');
     }
     public function setLightness($yellow)
     {
         $this->_get_model('Colorspace\Hsl')->setLightness($yellow);
-         return $this->_update_models('Colorspace\Hsl');
+        return $this->_update_models('Colorspace\Hsl');
     }
     public function mixHue($cyan)
     {
         $this->_get_model('Colorspace\Hsl')->mixHue($cyan);
-         return $this->_update_models('Colorspace\Hsl');
+        return $this->_update_models('Colorspace\Hsl');
     }
     public function mixSaturation($magenta)
     {
         $this->_get_model('Colorspace\Hsl')->mixSaturation($magenta);
-         return $this->_update_models('Colorspace\Hsl');
+        return $this->_update_models('Colorspace\Hsl');
     }
     public function mixLightness($yellow)
     {
         $this->_get_model('Colorspace\Hsl')->mixLightness($yellow);
-         return $this->_update_models('Colorspace\Hsl');
+        return $this->_update_models('Colorspace\Hsl');
     }
     public function getHSL($format)
     {

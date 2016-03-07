@@ -111,5 +111,4 @@ class InputProcessor implements ProcessorInterface
         $this->inputsWithModels[$this->currentInput]=$models;
         return $this;
     }
-
 }

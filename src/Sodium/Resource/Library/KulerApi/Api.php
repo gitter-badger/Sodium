@@ -94,8 +94,9 @@ class Kuler_Api
      */
     public function __construct($key)
     {
-        if (!isset($key) || empty($key))
+        if (!isset($key) || empty($key)) {
             throw new Kuler_Exception('Please provide an API key to use Kuler');
+        }
         $this->key = $key;
         $this->listTypes = array('recent', 'popular', 'rating', 'random');
     }
@@ -111,8 +112,9 @@ class Kuler_Api
      */
     public function get($type = 'recent', $startIndex = 0, $itemsPerPage = 20, $timeSpan = 0)
     {
-        if (!in_array($type, $this->listTypes))
+        if (!in_array($type, $this->listTypes)) {
             throw new Kuler_Exception('Invalid List Type: ' . $type);
+        }
         $params = array_filter(array(
             'listType' => $type,
             'startIndex' => (int)$startIndex,
@@ -188,8 +190,9 @@ class Kuler_Api
      */
     public static function generateThemePng($themeID)
     {
-        if (!is_numeric($themeID))
+        if (!is_numeric($themeID)) {
             throw new Kuler_Exception('Invalid Theme ID');
+        }
         $params = array(
             'themeid' => (int)$themeID,
             'key' => $this->key,
@@ -214,8 +217,9 @@ class Kuler_Api
      */
     public static function viewThemeUrl($themeID)
     {
-        if (!is_numeric($themeID))
+        if (!is_numeric($themeID)) {
             throw new Kuler_Exception('Invalid Theme ID');
+        }
         return self::buildUrl(self::URL_VIEW, (string)$themeID);
     }
 
@@ -240,15 +244,16 @@ class Kuler_Api
      */
     protected function request($endpoint, $params)
     {
-        if (isset($params['itemsPerPage']) && ($params['itemsPerPage'] > 100 || $params['itemsPerPage'] < 1))
+        if (isset($params['itemsPerPage']) && ($params['itemsPerPage'] > 100 || $params['itemsPerPage'] < 1)) {
             throw new Kuler_Exception('The number of items per page must be between 1 and 100.');
+        }
 
         $params = array_merge(array(
             'key' => $this->key,
         ), $params);
 
         try {
-            $this->response = new SimpleXmlElement(self::buildUrl($endpoint, $params), NULL, true);
+            $this->response = new SimpleXmlElement(self::buildUrl($endpoint, $params), null, true);
         } catch (Exception $e) {
             throw new Kuler_Exception('Error retrieving the feed: ' . $e->getMessage());
         }
@@ -273,8 +278,9 @@ class Kuler_Api
      */
     protected static function buildUrl($endpoint, $params)
     {
-        if (is_array($params))
+        if (is_array($params)) {
             $params = http_build_query($params);
+        }
         $requestUrl = self::URL_BASE . $endpoint;
         return $requestUrl . $params;
     }
@@ -303,5 +309,4 @@ class Kuler_Api
     {
         return $this->getResponse()->channel->xpath('item');
     }
-
 }

@@ -87,14 +87,12 @@ class Name extends ModelConcrete implements SeedInterface,ConversionAwareInterfa
             $hexmodel = new Hex($hex);
             return $hexmodel->toRGB();
         } elseif ($this->rgbUpdate) {
-
             return array(
                 $this->red,
                 $this->green,
                 $this->blue
             );
         } elseif ($this->name != $this->defaultName) {
-
             $hex = array_search($this->name, array_flip($this->colorNames(true)));
             $hexmodel = new Hex($hex);
             return $hexmodel->toRGB();

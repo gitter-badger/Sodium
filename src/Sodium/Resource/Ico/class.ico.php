@@ -24,7 +24,7 @@ class Ico
      * @type array(R, G, B) = array(255, 255, 255)
      * @var  public
      * */
-    var $bgcolor = array(255, 255, 255);
+    public $bgcolor = array(255, 255, 255);
 
     /**
      * Ico::bgcolor_transparent
@@ -33,7 +33,7 @@ class Ico
      * @type boolean = false
      * @var  public
      * */
-    var $bgcolor_transparent = false;
+    public $bgcolor_transparent = false;
 
     /**
      * Ico::Ico()
@@ -42,7 +42,7 @@ class Ico
      * @param   optional    string   $path   Path to ICO file
      * @return              void
      * */
-    function Ico($path = '')
+    public function Ico($path = '')
     {
         if (strlen($path) > 0) {
             $this->LoadFile($path);
@@ -57,7 +57,7 @@ class Ico
      * @param   string $path Path to ICO file
      * @return  boolean          Success
      * */
-    function LoadFile($path)
+    public function LoadFile($path)
     {
         $this->_filename = $path;
         if (($fp = @fopen($path, 'rb')) !== false) {
@@ -81,7 +81,7 @@ class Ico
      * @param   string $data Binary data of ICO file
      * @return  boolean          Success
      * */
-    function LoadData($data)
+    public function LoadData($data)
     {
         $this->formats = array();
 
@@ -98,8 +98,9 @@ class Ico
         for ($i = 0; $i < $this->ico['Count']; $i++) {
             $icodata = unpack("CWidth/CHeight/CColorCount/CReserved/SPlanes/SBitCount/LSizeInBytes/LFileOffset", $data);
             $icodata['FileOffset'] -= ($this->ico['Count'] * 16) + 6;
-            if ($icodata['ColorCount'] == 0)
+            if ($icodata['ColorCount'] == 0) {
                 $icodata['ColorCount'] = 256;
+            }
             $this->formats[] = $icodata;
 
             $data = substr($data, 16);
@@ -169,7 +170,7 @@ class Ico
      *
      * @return  integer   Total icons
      * */
-    function TotalIcons()
+    public function TotalIcons()
     {
         return count($this->formats);
     }
@@ -181,7 +182,7 @@ class Ico
      * @param   integer $index Icon index
      * @return  resource            Icon header
      * */
-    function GetIconInfo($index)
+    public function GetIconInfo($index)
     {
         if (isset($this->formats[$index])) {
             return $this->formats[$index];
@@ -200,7 +201,7 @@ class Ico
      * @param   optional   integer   $blue    Blue component
      * @return             void
      * */
-    function SetBackground($red = 255, $green = 255, $blue = 255)
+    public function SetBackground($red = 255, $green = 255, $blue = 255)
     {
         if (is_string($red) && preg_match('/^\#[0-9a-f]{6}$/', $red)) {
             $green = hexdec($red[3] . $red[4]);
@@ -218,7 +219,7 @@ class Ico
      * @param   optional   boolean   $is_transparent   Is Transparent or not
      * @return             boolean                     Is Transparent or not
      * */
-    function SetBackgroundTransparent($is_transparent = true)
+    public function SetBackgroundTransparent($is_transparent = true)
     {
         return ($this->bgcolor_transparent = $is_transparent);
     }
@@ -231,7 +232,7 @@ class Ico
      * @param   integer $index Position of the icon inside ICO
      * @return  resource            Image resource
      * */
-    function GetIcon($index)
+    public function GetIcon($index)
     {
         if (!isset($this->formats[$index])) {
             return false;
@@ -415,7 +416,7 @@ class Ico
      * @param   optional    integer     $alphpa   Alpha channel
      * @return              integer               Color index
      * */
-    function AllocateColor(&$im, $red, $green, $blue, $alpha = 0)
+    public function AllocateColor(&$im, $red, $green, $blue, $alpha = 0)
     {
         $c = imagecolorexactalpha($im, $red, $green, $blue, $alpha);
         if ($c >= 0) {
@@ -423,7 +424,4 @@ class Ico
         }
         return imagecolorallocatealpha($im, $red, $green, $blue, $alpha);
     }
-
 }
-
-?>

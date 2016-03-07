@@ -30,7 +30,6 @@ class Lch extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     protected function format($string)
     {
-
         $type = self::isValid($string, true);
         switch ($type) {
             case 'lch':
@@ -45,7 +44,7 @@ class Lch extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         return $value;
     }
 
-    static function regex()
+    public static function regex()
     {
         $regex['lch'] = '/^lch\(([-+]?[0-9]*\.?[0-9]*),([-+]?[0-9]*\.?.*),([-+]?[0-9]*.*)\)$/i';
         return $regex;
@@ -54,7 +53,6 @@ class Lch extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
     public function getStandardOutput()
     {
         return 'lch(' . $this->lightness . ',' . $this->chroma . ',' . $this->hue . ')';
-
     }
 
     public function getDefaultOutput()
@@ -66,7 +64,7 @@ class Lch extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         );
     }
 
-    function toRGB()
+    public function toRGB()
     {
         $radian = $this->hue * (pi() / 180);
         $a = cos($radian) * $this->chroma;
@@ -76,7 +74,7 @@ class Lch extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         return $lab_model->toRGB();
     }
 
-    function fromRGB(array $rgb)
+    public function fromRGB(array $rgb)
     {
         $lab_model = new Lab();
         $lab = $lab_model->fromRGB($rgb);

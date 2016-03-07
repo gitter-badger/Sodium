@@ -26,6 +26,4 @@ abstract class ExportConcrete
     {
         $this->inputProcessor = $inputProcessor;
     }
-
-
 }

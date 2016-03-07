@@ -34,7 +34,6 @@ class Lab extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     protected function format($string)
     {
-
         $type = self::isValid($string, true);
         switch ($type) {
             case 'lab':
@@ -56,7 +55,7 @@ class Lab extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         return $ref[$this->cie][$this->observerDegree][$this->illuminant];
     }
 
-    static function regex()
+    public static function regex()
     {
         $regex['lab'] = '/^lab\(([-+]?[0-9]*\.?[0-9]*),([-+]?[0-9]*\.?.*),([-+]?[0-9]*.*)\)$/i';
         return $regex;
@@ -76,7 +75,7 @@ class Lab extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         );
     }
 
-    function toRGB()
+    public function toRGB()
     {
         $var_Y = ($this->l + 16) / 116;
         $var_X = ($this->a / 500) + $var_Y;
@@ -113,7 +112,7 @@ class Lab extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         );
     }
 
-    function fromRGB(array $rgb)
+    public function fromRGB(array $rgb)
     {
         $xyz_model = new Xyz();
         $xyz = $xyz_model->fromRGB($rgb);

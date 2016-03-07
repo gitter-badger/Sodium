@@ -48,8 +48,9 @@ class Kuler_Comment
     {
         $namespaces = $xmlItem->getDocNamespaces();
         $this->_comment = $xmlItem->children($namespaces['kuler'])->commentItem;
-        if (!isset($this->_comment->author))
+        if (!isset($this->_comment->author)) {
             throw new Kuler_Exception('Error loading the Comment item');
+        }
     }
 
     /**
@@ -64,8 +65,9 @@ class Kuler_Comment
         $property = lcfirst($name);
         if (property_exists($this->_comment, $property)) {
             return $this->_comment->$property;
-        } else
+        } else {
             throw new Kuler_Exception('Property \'' . $name . '\' not found');
+        }
     }
 
     /**
@@ -83,5 +85,4 @@ class Kuler_Comment
     {
         return new Kuler_Theme($this->_comment);
     }
-
 }

@@ -13,22 +13,24 @@ class Hex extends ModelConcrete implements SeedInterface,ConversionAwareInterfac
 
     public function __construct($hex = '')
     {
-        if($hex != '')
+        if ($hex != '') {
             $this->hex = $this->format($hex);
+        }
     }
 
     protected function format($string)
     {
-
-        if(!is_string($string))
+        if (!is_string($string)) {
             throw new Exception('Cannot accept array input. Please provide valid string.');
-        if(!self::isAcceptedFormat($string))
+        }
+        if (!self::isAcceptedFormat($string)) {
             throw new Exception('invalid format');
+        }
 
         $string = strtolower($string);
         $string = str_replace('#', '', $string);
         $string = str_replace('0x', '', $string);
-        if(strlen($string) == 3) {
+        if (strlen($string) == 3) {
             $hex_1 = $string[0] . $string[0];
             $hex_2 = $string[1] . $string[1];
             $hex_3 = $string[2] . $string[2];
@@ -71,16 +73,18 @@ class Hex extends ModelConcrete implements SeedInterface,ConversionAwareInterfac
 
     public function getHex($short = false)
     {
-        if($short)
+        if ($short) {
             return $this->toShort($this->hex);
+        }
 
         return $this->hex;
     }
 
     public function getStandardOutput($short = false)
     {
-        if($short)
+        if ($short) {
             return '#' . $this->toShort($this->hex);
+        }
 
         return '#' . $this->hex;
     }
@@ -109,16 +113,18 @@ class Hex extends ModelConcrete implements SeedInterface,ConversionAwareInterfac
     protected function hexcode($mode = true)
     {
         $colors = HexCode::get();
-        if(!$mode)
+        if (!$mode) {
             return $colors;
-        else
+        } else {
             return array_flip($colors);
+        }
     }
 
     protected function toShort($hex)
     {
-        if(strlen($hex) == 6)
+        if (strlen($hex) == 6) {
             return $this->trimShort($hex);
+        }
 
         return $hex;
     }
@@ -126,9 +132,10 @@ class Hex extends ModelConcrete implements SeedInterface,ConversionAwareInterfac
 
     protected function trimShort($hex)
     {
-        if($hex[0] == $hex[1] && $hex[3] == $hex[3] && $hex[4] == $hex[5])
+        if ($hex[0] == $hex[1] && $hex[3] == $hex[3] && $hex[4] == $hex[5]) {
             return $hex[0] . $hex[2] . $hex[4];
-        else
+        } else {
             return $hex;
+        }
     }
 }

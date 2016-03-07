@@ -20,7 +20,6 @@ class Cmy extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     public function __construct($cmy = '')
     {
-
         if ($cmy != '') {
             $this->setProperties($this->format($cmy));
         }
@@ -38,7 +37,6 @@ class Cmy extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     public static function regex()
     {
-
         $regex['cmy'] = '/^cmy\(([-+]?[0-9]*\.?[0-9]*)%?,([-+]?[0-9]*\.?.*)%?,([-+]?[0-9]*.*)%?\)$/i';
         $regex['cyan'] = '/^cyan\(([-+]?[0-9]*\.?[0-9]*)%?\)$/i';
         $regex['magenta'] = '/^magenta\(([-+]?[0-9]*\.?[0-9]*)%?\)$/i';
@@ -133,7 +131,6 @@ class Cmy extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     protected function filterInput($value)
     {
-
         if (is_array($value)) {
             $cmy = array();
 
@@ -149,7 +146,6 @@ class Cmy extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     protected function validateInput($value)
     {
-
         if (strpos($value, '%') !== false) {
             $value = rtrim($value, '%');
             $value = (float)$value;
@@ -168,9 +164,8 @@ class Cmy extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         return intval($value);
     }
 
-    protected function formatOutput($value, $format,$collective=false)
+    protected function formatOutput($value, $format, $collective=false)
     {
-
         if (is_array($value) && $format == 'standard') {
             return $this->getStandardOutput();
         }
@@ -180,10 +175,10 @@ class Cmy extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         if (is_array($value) && $format == 'object') {
             return $this;
         }
-        if (is_array($value)) {  
+        if (is_array($value)) {
             $new_values = array();
             foreach ($value as $val) {
-                $new_values[] = $this->formatOutput($val, $format,true);
+                $new_values[] = $this->formatOutput($val, $format, true);
             }
             return $new_values;
         }

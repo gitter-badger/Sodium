@@ -10,7 +10,7 @@ use Imagine\Image\Point;
 
 class Image extends ModelConcrete implements AggregateInterface
 {
-    public static $canExportable = FALSE;
+    public static $canExportable = false;
     protected $image;
     protected $imageProperties = array();
     protected $colors = array();
@@ -19,13 +19,14 @@ class Image extends ModelConcrete implements AggregateInterface
 
     public function __construct($image = '')
     {
-        if ($image != '')
+        if ($image != '') {
             $this->image = $this->format($image);
+        }
     }
 
     protected function format($string)
     {
-        $type = self::isAcceptedFormat($string, TRUE);
+        $type = self::isAcceptedFormat($string, true);
         switch ($type) {
             case 'full':
                 $string = ltrim($string, 'img');
@@ -37,8 +38,9 @@ class Image extends ModelConcrete implements AggregateInterface
             default:
                 $value = '';
         }
-        if (!file_exists($value))
+        if (!file_exists($value)) {
             throw new Exception('Image file ' . $value . ' not exists');
+        }
         return $value;
     }
 
@@ -98,10 +100,11 @@ class Image extends ModelConcrete implements AggregateInterface
             for ($y = 0, $height = $size->getHeight(); $y < $height; $y++) {
                 $col = $resource->getColorAt(new Point($x, $y));
                 $rgb = 'rgb(' . $col->getRed() . ',' . $col->getGreen() . ',' . $col->getBlue() . ')';
-                if (isset($colors[$rgb]))
+                if (isset($colors[$rgb])) {
                     $colors[$rgb] += 1;
-                else
+                } else {
                     $colors[$rgb] = 1;
+                }
             }
         }
         arsort($colors, SORT_NUMERIC);

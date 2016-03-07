@@ -175,5 +175,3 @@ class phpColourLover
         return new PCL_Lover($lover);
     }
 }
-
-?>

@@ -20,5 +20,4 @@ class KulerApi
         $themes = $kuler->get($get);
         return $themes[0]->getSwatchesHex(true);
     }
-
 }

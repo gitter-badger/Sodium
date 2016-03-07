@@ -317,5 +317,3 @@ class PCL_Colors
         return (int)$obj_val;
     }
 }
-
-?>

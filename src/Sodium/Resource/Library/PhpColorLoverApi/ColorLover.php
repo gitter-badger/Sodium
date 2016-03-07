@@ -20,5 +20,4 @@ class ColorLover
         $results = $palette->get();
         return $results;
     }
-
 }

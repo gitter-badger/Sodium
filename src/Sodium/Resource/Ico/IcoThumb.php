@@ -19,5 +19,4 @@ class IcoThumb
         imagepng($im, $path);
         imagedestroy($im);
     }
-
 }

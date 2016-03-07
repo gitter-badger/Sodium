@@ -22,7 +22,6 @@ class Hsl extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     public function __construct($hsl = '')
     {
-
         if ($hsl != '') {
             $this->setProperties($this->format($hsl));
         }
@@ -40,16 +39,16 @@ class Hsl extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     protected function filterInput($value)
     {
-
         if (is_array($value)) {
             $hsl = array();
 
             foreach ($value as $key => $val) {
-                if($key==0)
+                if ($key==0) {
                     $type='hue';
-                else
+                } else {
                     $type='';
-                $hsl[] = $this->validateInput($val,$type);
+                }
+                $hsl[] = $this->validateInput($val, $type);
             }
 
             return $hsl;
@@ -60,7 +59,6 @@ class Hsl extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     protected function validateInput($value, $key = '')
     {
-
         $max = self::MAX;
         if ($key == 'hue') {
             $max = self::HUE_MAX;
@@ -86,7 +84,6 @@ class Hsl extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     protected function format($string)
     {
-
         $type = self::isAcceptedFormat($string, true);
         switch ($type) {
             case 'hsl':
@@ -122,7 +119,7 @@ class Hsl extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         return $value;
     }
 
-    static function regex()
+    public static function regex()
     {
         $regex['hsl'] = '/^hsl\(([-+]?[0-9]*\.?[0-9]*)%?,([-+]?[0-9]*\.?.*)%?,([-+]?[0-9]*.*)%?\)$/i';
         $regex['hue'] = '/^hue\(([-+]?[0-9]*\.?[0-9]*)%?\)$/i';
@@ -146,7 +143,7 @@ class Hsl extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         );
     }
 
-    function toRGB()
+    public function toRGB()
     {
         $this->hue = $this->hue / self::HUE_MAX;
         $this->saturation = $this->saturation / self::MAX;
@@ -176,7 +173,6 @@ class Hsl extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     protected function hueToRgb($v1, $v2, $hue_value)
     {
-
         if ($hue_value < 0) {
             $hue_value += 1;
         }
@@ -195,7 +191,7 @@ class Hsl extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         return ($v1);
     }
 
-    function fromRGB(array $rgb)
+    public function fromRGB(array $rgb)
     {
         $red_value = ($rgb[0] / 255);
 
@@ -244,7 +240,6 @@ class Hsl extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
     }
     protected function formatOutput($value, $format='')
     {
-
         if (is_array($value) && $format == 'standard') {
             return $this->getStandardOutput();
         }
@@ -254,10 +249,10 @@ class Hsl extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         if (is_array($value) && $format == 'object') {
             return $this;
         }
-        if (is_array($value)&& $format == '') {  
+        if (is_array($value)&& $format == '') {
             $new_values = array();
             foreach ($value as $val) {
-                $new_values[] = $this->formatOutput($val, $format,true);
+                $new_values[] = $this->formatOutput($val, $format, true);
             }
             return $new_values;
         }

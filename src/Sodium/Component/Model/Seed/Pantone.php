@@ -10,12 +10,13 @@ class Pantone extends ModelConcrete implements SeedInterface,ConversionAwareInte
 {
     protected $pantoneName;
     protected $defaultName = 'unavailable';
-    protected $rgbUpdate = FALSE;
+    protected $rgbUpdate = false;
 
     public function __construct($pantone = '')
     {
-        if ($pantone != '')
+        if ($pantone != '') {
             $this->pantoneName = $this->format($pantone);
+        }
     }
 
     public function fromRGB(array $rgb)
@@ -23,10 +24,11 @@ class Pantone extends ModelConcrete implements SeedInterface,ConversionAwareInte
         $hexmodel = new Hex();
         $hex = $hexmodel->fromRGB($rgb);
         $hex = '#' . $hex;
-        if (!in_array($hex, $this->colornames()))
+        if (!in_array($hex, $this->colornames())) {
             $this->pantoneName = $this->defaultName;
-        else
+        } else {
             $this->pantoneName = array_search($hex, $this->colornames());
+        }
     }
 
     public function getDefaultOutput()
@@ -41,12 +43,12 @@ class Pantone extends ModelConcrete implements SeedInterface,ConversionAwareInte
 
     public function getHex()
     {
-        return strtolower(array_search($this->_name, array_flip($this->colornames(TRUE))));
+        return strtolower(array_search($this->_name, array_flip($this->colornames(true))));
     }
 
     public function toRGB()
     {
-        $hex = array_search($this->pantoneName, array_flip($this->colornames(TRUE)));
+        $hex = array_search($this->pantoneName, array_flip($this->colornames(true)));
         $hexmodel = new Hex($hex);
         return $hexmodel->toRGB();
     }
@@ -60,7 +62,7 @@ class Pantone extends ModelConcrete implements SeedInterface,ConversionAwareInte
 
     private function format($string)
     {
-        $type = self::isValid($string, TRUE);
+        $type = self::isValid($string, true);
         switch ($type) {
             case 'pantone':
                 $string = ltrim($string, 'pantone');
@@ -81,11 +83,12 @@ class Pantone extends ModelConcrete implements SeedInterface,ConversionAwareInte
         return $this->pantoneName;
     }
 
-    protected function colornames($case = FALSE)
+    protected function colornames($case = false)
     {
         $colors = \Sodium\Component\Reference\Pantone::get();
-        if ($case)
+        if ($case) {
             return array_change_key_case($colors, CASE_LOWER);
+        }
         return $colors;
     }
 }

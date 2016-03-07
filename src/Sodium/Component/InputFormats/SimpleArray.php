@@ -9,13 +9,15 @@ use Sodium\Engine\Processor\Input\InputFormatter;
 class SimpleArray extends InputFormatConcrete implements InputFormatInterface
 {
 
-    public static function isAcceptedFormat($input){
+    public static function isAcceptedFormat($input)
+    {
         return is_array($input);
     }
-    public function getFormattedInput($input){
+    public function getFormattedInput($input)
+    {
         $c=array();
-        foreach($input as $in){
-            $c[]=InputFormatter::init($in,$this->getFormats())->format();
+        foreach ($input as $in) {
+            $c[]=InputFormatter::init($in, $this->getFormats())->format();
         }
         return $c;
     }

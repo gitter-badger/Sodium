@@ -30,7 +30,6 @@ class Xyz extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
 
     protected function format($string)
     {
-
         $type = self::isValid($string, true);
         switch ($type) {
             case 'xyz':
@@ -45,7 +44,7 @@ class Xyz extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         return $value;
     }
 
-    static function regex()
+    public static function regex()
     {
         $regex['xyz'] = '/^xyz\(([-+]?[0-9]*\.?[0-9]*)%?,([-+]?[0-9]*\.?.*)%?,([-+]?[0-9]*.*)%?\)$/i';
         return $regex;
@@ -65,7 +64,7 @@ class Xyz extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         );
     }
 
-    function toRGB()
+    public function toRGB()
     {
         $varx = $this->x / 100;
         $vary = $this->y / 100;
@@ -100,7 +99,7 @@ class Xyz extends ModelConcrete implements ColorspaceInterface,ConversionAwareIn
         );
     }
 
-    function fromRGB(array $rgb)
+    public function fromRGB(array $rgb)
     {
         $tmp_r = $rgb[0] / 255;
         $tmp_g = $rgb[1] / 255;

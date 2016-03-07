@@ -8,7 +8,7 @@ class ModelProcessor implements ProcessorInterface
 {
     protected $registeredModels=array();
 
-    function __construct(array $registeredModels)
+    public function __construct(array $registeredModels)
     {
         $this->registeredModels = $registeredModels;
     }

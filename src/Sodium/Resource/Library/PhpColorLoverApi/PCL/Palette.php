@@ -98,7 +98,6 @@ class PCL_Palette
      */
     private function parse($xml)
     {
-
         $xml = preg_replace("/\<\!\[CDATA\[(.*?)\]\]\>/ies", "'[CDATA]'.base64_encode('$1').'[/CDATA]'", $xml);
         $xml = new SimpleXMLElement($xml);
         if (isset($xml->noresults)) {
@@ -159,5 +158,3 @@ class PCL_Palette
         return (int)$obj_val;
     }
 }
-
-?>

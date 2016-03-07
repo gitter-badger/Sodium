@@ -157,5 +157,3 @@ class PCL_Pattern
         return (int)$obj_val;
     }
 }
-
-?>

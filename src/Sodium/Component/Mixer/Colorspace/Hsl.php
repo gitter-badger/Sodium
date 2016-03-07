@@ -15,21 +15,21 @@ class Hsl extends HslModel
 
     public function getHue($format)
     {
-        return $this->HslModel->formatOutput($this->HslModel->hue,$format);
+        return $this->HslModel->formatOutput($this->HslModel->hue, $format);
     }
 
     public function getSaturation($format)
     {
-        return $this->HslModel->formatOutput($this->HslModel->saturation,$format);
+        return $this->HslModel->formatOutput($this->HslModel->saturation, $format);
     }
     public function getLightness($format)
     {
-        return $this->HslModel->formatOutput($this->HslModel->lightness,$format);
+        return $this->HslModel->formatOutput($this->HslModel->lightness, $format);
     }
 
     public function getHSL($format)
     {
-        return $this->HslModel->formatOutput($this->HslModel->hsl,$format);
+        return $this->HslModel->formatOutput($this->HslModel->hsl, $format);
     }
 
 

@@ -323,5 +323,3 @@ class PCL_Palettes
         return (int)$obj_val;
     }
 }
-
-?>
